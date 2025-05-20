@@ -33,38 +33,41 @@ public class Program {
         CarRental crCan = new CarRental(start, finish, new Vehicle(carModel));
         CarRental crUSA = new CarRental(start, finish, new Vehicle(carModel));
 
-        System.out.print("Entre com o preço por hora: ");
-        double pricePerHour = sc.nextDouble();
-        System.out.print("Entre com o preço por dia: ");
-        double pricePerDay = sc.nextDouble();
+        RentalService rentalService = new RentalService(new BrazilTaxService());
 
-        RentalService rentalService = new RentalService(pricePerHour, pricePerDay, new BrazilTaxService());
+        RentalService rentalServiceCan = new RentalService(new CanadaTaxService());
 
-        RentalService rentalServiceCan = new RentalService(pricePerHour, pricePerDay, new CanadaTaxService());
-
-        RentalService rentalServiceUSA = new RentalService(pricePerHour, pricePerDay, new UnitedStatesTaxService());
+        RentalService rentalServiceUSA = new RentalService(new UnitedStatesTaxService());
 
         rentalService.processInvoice(cr);
         rentalServiceCan.processInvoice(crCan);
         rentalServiceUSA.processInvoice(crUSA);
 
 
-        System.out.println("FATURA: ");
-        System.out.println("Pagamento básico: " +  String.format("%.2f", cr.getInvoice().getBasicPayment()));
-        System.out.println("Imposto: " + String.format("%.2f",  cr.getInvoice().getTax()));
-        System.out.println("Pagamento total: " + String.format("%.2f", cr.getInvoice().getTotalPayment()));
+        System.out.println(cr.getInvoice());
+
+        System.out.println("Canada \n" + crCan.getInvoice());
+
+        System.out.println("USA \n" + crUSA.getInvoice());
 
 
-        System.out.println("FATURA CANADA: ");
-        System.out.println("Pagamento básico: " +  String.format("%.2f", crCan.getInvoice().getBasicPayment()));
-        System.out.println("Imposto: " + String.format("%.2f",  crCan.getInvoice().getTax()));
-        System.out.println("Pagamento total: " + String.format("%.2f", crCan.getInvoice().getTotalPayment()));
 
-
-        System.out.println("FATURA USA:");
-        System.out.println("Pagamento básico: " +  String.format("%.2f", crUSA.getInvoice().getBasicPayment()));
-        System.out.println("Imposto: " + String.format("%.2f",  crUSA.getInvoice().getTax()));
-        System.out.println("Pagamento total: " + String.format("%.2f", crUSA.getInvoice().getTotalPayment()));
+//        System.out.println("FATURA: ");
+//        System.out.println("Pagamento básico: " +  String.format("%.2f", cr.getInvoice().getBasicPayment()));
+//        System.out.println("Imposto: " + String.format("%.2f",  cr.getInvoice().getTax()));
+//        System.out.println("Pagamento total: " + String.format("%.2f", cr.getInvoice().getTotalPayment()));
+//
+//
+//        System.out.println("FATURA CANADA: ");
+//        System.out.println("Pagamento básico: " +  String.format("%.2f", crCan.getInvoice().getBasicPayment()));
+//        System.out.println("Imposto: " + String.format("%.2f",  crCan.getInvoice().getTax()));
+//        System.out.println("Pagamento total: " + String.format("%.2f", crCan.getInvoice().getTotalPayment()));
+//
+//
+//        System.out.println("FATURA USA:");
+//        System.out.println("Pagamento básico: " +  String.format("%.2f", crUSA.getInvoice().getBasicPayment()));
+//        System.out.println("Imposto: " + String.format("%.2f",  crUSA.getInvoice().getTax()));
+//        System.out.println("Pagamento total: " + String.format("%.2f", crUSA.getInvoice().getTotalPayment()));
 
 
 

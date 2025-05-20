@@ -32,4 +32,12 @@ public class Invoice {
     public Double getTotalPayment() {
         return getBasicPayment() + getTax();
     }
+
+    @Override
+    public String toString() {
+        return "Fatura: \n"
+                +"Pagamento básico: " + getBasicPayment() + "\n"
+                + "Imposto " + getTax() + "\n"
+                + "Pagamento total: " + getTotalPayment();
+    }
 }

@@ -7,14 +7,12 @@ import java.time.Duration;
 
 public class RentalService {
 
-    private Double pricePerHour;
-    private Double pricePerDay;
+    private static final Double PRICE_PER_HOUR = 10.00;
+    private static final Double PRICE_PER_DAY = 130.00;
 
-    private TaxService taxService;
+    private final TaxService taxService;
 
-    public RentalService(Double pricePerHour, Double pricePerDay, TaxService taxService) {
-        this.pricePerHour = pricePerHour;
-        this.pricePerDay = pricePerDay;
+    public RentalService(TaxService taxService) {
         this.taxService = taxService;
     }
 
@@ -25,9 +23,9 @@ public class RentalService {
 
         double basicPayment;
         if (hours <= 12.0) {
-            basicPayment = pricePerHour * Math.ceil(hours);
+            basicPayment = PRICE_PER_HOUR * Math.ceil(hours);
         } else {
-            basicPayment = pricePerDay * Math.ceil(hours/24.0);
+            basicPayment = PRICE_PER_DAY * Math.ceil(hours/24.0);
         }
 
         double tax = taxService.tax(basicPayment);
